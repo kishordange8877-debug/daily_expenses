@@ -1,0 +1,1340 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Expense Management</title>
+
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- Dashboard CSS -->
+
+    <link
+        rel="stylesheet"
+        href="dashboard.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================
+         TOP NAVBAR
+    =================================================== -->
+
+    <header class="navbar">
+
+
+        <!-- Left Side -->
+
+        <div class="navbar-left">
+
+
+            <!-- Mobile Menu Button -->
+<button
+    class="menu-btn"
+    id="menuBtn"
+    type="button"
+>
+    <i class="fa-solid fa-bars"></i>
+</button>
+
+            <!-- Application Name -->
+
+            <h2 data-i18n="appName">
+
+                Expense Management
+
+            </h2>
+
+
+        </div>
+
+
+
+        <!-- Right Side -->
+
+        <div class="navbar-right">
+
+
+            <!-- Date Filter -->
+          
+
+
+
+            <!-- Language Filter -->
+
+            <div class="language-filter">
+
+
+                <i class="fa-solid fa-globe"></i>
+
+
+                <select id="languageSelect">
+
+
+                    <option value="en">
+                        English
+                    </option>
+
+
+                    <option value="mr">
+                        मराठी
+                    </option>
+
+
+                    <option value="hi">
+                        हिंदी
+                    </option>
+
+
+                </select>
+
+
+            </div>
+            <!-- Logout Button -->
+
+<button
+    type="button"
+    id="logoutBtn"
+    class="logout-btn"
+>
+    <i class="fa-solid fa-right-from-bracket"></i>
+
+    <span data-i18n="logout">
+        Logout
+    </span>
+</button>
+
+
+        </div>
+
+
+    </header>
+
+
+
+    <!-- ==================================================
+         MAIN LAYOUT
+    =================================================== -->
+
+    <div class="layout">
+
+
+        <!-- ==================================================
+             SIDEBAR
+        =================================================== -->
+
+      <aside
+    class="sidebar"
+    id="sidebar"
+>
+
+    <div class="sidebar-menu">
+
+        <!-- Dashboard -->
+
+        <a
+            href="#"
+            class="menu-item active"
+            data-section="dashboardSection"
+        >
+
+            <i class="fa-solid fa-house"></i>
+
+            <span data-i18n="dashboard">
+                Dashboard
+            </span>
+
+        </a>
+
+
+        <!-- Manage Category -->
+
+        <a
+            href="#"
+            class="menu-item"
+            data-section="categorySection"
+        >
+
+            <i class="fa-solid fa-layer-group"></i>
+
+            <span data-i18n="manageCategory">
+                Manage Category
+            </span>
+
+        </a>
+
+
+        <!-- Daily Expense -->
+
+        <a
+            href="#"
+            class="menu-item"
+            id="dailyExpenseMenu"
+            data-section="expenseSection"
+        >
+
+            <i class="fa-solid fa-money-bill-transfer"></i>
+
+            <span data-i18n="dailyExpense">
+                Daily Expense
+            </span>
+
+        </a>
+
+
+        <!-- Income -->
+
+        <a
+            href="#"
+            class="menu-item"
+            data-section="incomeSection"
+        >
+
+            <i class="fa-solid fa-money-bill-wave"></i>
+
+            <span data-i18n="income">
+                Income
+            </span>
+
+        </a>
+
+    </div>
+
+</aside>
+
+
+
+        <!-- ==================================================
+             MAIN CONTENT
+        =================================================== -->
+
+        <main class="main-content">
+
+
+
+            <!-- ==================================================
+                 DASHBOARD SECTION
+            =================================================== -->
+
+            <section
+                id="dashboardSection"
+                class="page-section "
+            >
+
+
+                <!-- Dashboard Header -->
+
+              <div class="page-header">
+
+    <div class="dashboard-title">
+
+        <h1 data-i18n="dashboard">
+            Dashboard
+        </h1>
+
+     <!-- <h3 id="summaryTitle" data-i18n="todaysSummary">
+    Today's Summary
+</h3> -->
+
+    </div>
+
+
+    <!-- =========================================
+         DASHBOARD DATE FILTER
+    ========================================== -->
+
+    <div class="date-filter">
+
+        <label for="selectedDate">
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+        </label>
+
+
+        <input
+            type="date"
+            id="selectedDate"
+        >
+
+
+      <select id="dashboardPeriod">
+
+    <option value="" data-i18n="previousDay">
+        Previous Day
+    </option>
+
+    <option value="day" data-i18n="oneDay">
+        One Day
+    </option>
+
+    <option value="week" data-i18n="oneWeek">
+        One Week
+    </option>
+
+    <option value="month" data-i18n="oneMonth">
+        One Month
+    </option>
+
+    <option value="year" data-i18n="oneYear">
+        One Year
+    </option>
+
+</select>
+
+    </div>
+
+</div>
+
+    
+
+                <!-- ==================================================
+                     DASHBOARD CARDS
+                =================================================== -->
+
+                <div class="dashboard-cards">
+
+
+                    <!-- =========================
+                         TOTAL INCOME
+                    ========================== -->
+
+                    <div class="dashboard-card income-card">
+
+
+                        <div class="card-icon">
+
+                            <i class="fa-solid fa-arrow-trend-up"></i>
+
+                        </div>
+
+
+                        <div class="card-content">
+
+
+                            <h3 data-i18n="totalIncome">
+
+                                Total Income
+
+                            </h3>
+
+
+                            <p id="totalIncome">
+
+                                ₹ 0
+
+                            </p>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         TOTAL EXPENSE
+                    ========================== -->
+
+                    <div class="dashboard-card expense-card">
+
+
+                        <div class="card-icon">
+
+                            <i class="fa-solid fa-arrow-trend-down"></i>
+
+                        </div>
+
+
+                        <div class="card-content">
+
+
+                            <h3 data-i18n="totalExpense">
+
+                                Total Expense
+
+                            </h3>
+
+
+                            <p id="totalExpense">
+
+                                ₹ 0
+
+                            </p>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         PROFIT
+                    ========================== -->
+
+                    <div class="dashboard-card profit-card">
+
+
+                        <div class="card-icon">
+
+                            <i class="fa-solid fa-chart-line"></i>
+
+                        </div>
+
+
+                        <div class="card-content">
+
+
+                            <h3 data-i18n="profit">
+
+                                Profit
+
+                            </h3>
+
+
+                            <p id="profit">
+
+                                ₹ 0
+
+                            </p>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- ==================================================
+                 MANAGE CATEGORY SECTION
+            =================================================== -->
+
+            <section
+                id="categorySection"
+                class="page-section"
+            >
+
+
+                <!-- Page Header -->
+
+                <div class="page-header">
+
+    <h1 data-i18n="manageCategory">
+        Manage Category
+    </h1>
+
+    <!-- <p data-i18n="manageCategorySubtitle">
+        Add and manage your expense categories
+    </p> -->
+
+</div>
+
+
+
+                <!-- ==================================================
+                     ADD CATEGORY FORM
+                =================================================== -->
+
+                <div class="category-form">
+
+
+                    <!-- Form Header -->
+
+                    <div class="form-header">
+
+
+                        <h2 data-i18n="addNewCategory">
+
+                            Add New Category
+
+                        </h2>
+
+<!-- 
+                        <p  data-i18n="addNewCategory">
+
+                            Create a new expense category
+
+                        </p> -->
+
+
+                    </div>
+
+
+
+                    <!-- Form -->
+
+                    <form id="categoryForm">
+
+    <!-- Category Name -->
+
+    <div class="form-group">
+
+        <label for="categoryName" data-i18n="categoryName">
+            Category Name
+        </label>
+
+        <input
+            type="text"
+            id="categoryName"
+            name="category_name"
+            placeholder="Enter category name"
+            data-i18n-placeholder="categoryNamePlaceholder"
+            autocomplete="off"
+            required
+        >
+
+    </div>
+
+                        <!-- Created Date -->
+
+   <div class="form-group">
+
+    <label for="createdDate" data-i18n="createdDate">
+        Created Date
+    </label>
+
+    <input
+        type="date"
+        id="createdDate"
+        name="created_at"
+        required
+    >
+
+</div>
+
+                        <!-- Save Button -->
+
+                        <button
+    type="submit"
+    id="saveCategoryBtn"
+    class="save-btn"
+>
+
+    <i class="fa-solid fa-plus"></i>
+
+    <span data-i18n="saveCategory">
+        Save Category
+    </span>
+
+</button>
+
+
+                    </form>
+
+
+                </div>
+
+
+
+                <!-- ==================================================
+                     CATEGORY LIST
+                =================================================== -->
+
+                <div class="category-list">
+
+
+                    <!-- List Header -->
+
+                    <div class="list-header">
+
+<h2 data-i18n="categoryList">
+    Category List
+</h2>
+
+<!-- <p data-i18n="categoryListSubtitle">
+    View and manage your saved categories
+</p> -->
+
+</div>
+
+
+                    <!-- ==================================================
+                         CATEGORY TABLE
+                    =================================================== -->
+
+                    <div class="category-table-wrapper">
+
+
+                        <table class="category-table">
+
+
+                            <!-- Table Header -->
+
+                            <thead>
+
+
+                                <tr>
+
+
+                                    <th>
+
+                                        ID
+
+                                    </th>
+
+
+                                  <th data-i18n="categoryName">
+    Category Name
+</th>
+
+<th data-i18n="createdDate">
+    Created Date
+</th>
+
+<th data-i18n="createdBy">
+    Created By
+</th>
+
+<th data-i18n="action">
+    Action
+</th>
+
+                                </tr>
+
+
+                            </thead>
+
+
+
+                            <!-- Table Body -->
+
+                            <tbody
+                                id="categoryTableBody"
+                            >
+
+
+                                <!--
+
+                                    Categories API मधून
+                                    data येथे येईल.
+
+                                -->
+
+
+                            </tbody>
+
+
+                        </table>
+
+
+                    </div>
+
+
+
+                    <!-- ==================================================
+                         MOBILE CATEGORY LIST
+                    =================================================== -->
+
+                    <div
+                        class="category-mobile-list"
+                        id="categoryMobileList"
+                    >
+
+
+                        <!--
+
+                            Mobile categories API मधून
+                            data येथे येईल.
+
+                        -->
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+         <section id="expenseSection" class="page-section">
+
+
+    <h2
+        id="expenseTitle"
+        data-i18n="expenseTitle"
+    >
+        Daily Expense 
+    </h2>
+
+
+    <!-- <p
+        class="section-subtitle"
+        id="expenseSubtitle"
+        data-i18n="expenseSubtitle"
+    >
+        Add and manage your daily expenses
+    </p> -->
+
+
+    <div class="form-box">
+
+
+        <h2
+            id="addExpenseTitle"
+            data-i18n="addExpenseTitle"
+        >
+            Add Expense
+        </h2>
+
+
+        <div class="form-group">
+
+
+            <label
+                for="expenseDate"
+                id="expenseDateLabel"
+                data-i18n="expenseDateLabel"
+            >
+                Expense Date
+            </label>
+
+
+            <input
+                type="date"
+                id="expenseDate"
+            >
+
+
+        </div>
+
+
+        <div id="expenseItems">
+
+
+            <div class="expense-row">
+
+
+                <div class="form-group">
+
+
+                    <label
+                        id="expenseCategoryLabel"
+                        data-i18n="expenseCategoryLabel"
+                    >
+                        Category
+                    </label>
+
+
+                    <select class="expenseCategory">
+
+                        <option
+                            value=""
+                            data-i18n="selectCategory"
+                        >
+                            Select Category
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+                <div class="form-group">
+
+
+                    <label
+                        id="expenseAmountLabel"
+                        data-i18n="expenseAmountLabel"
+                    >
+                        Amount (₹)
+                    </label>
+
+
+                    <input
+                        type="number"
+                        class="expenseAmount"
+                        placeholder="Enter amount"
+                        data-i18n-placeholder="enterAmount"
+                    >
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <button
+            type="button"
+            id="addExpenseRow"
+            data-i18n="addMore"
+        >
+            + Add More
+        </button>
+
+
+        <!-- <div class="total-box">
+
+            <h3>
+
+                <span
+                    id="totalAmountLabel"
+                    data-i18n="totalAmount"
+                >
+                    Total Amount
+                </span>
+
+                ₹<span id="expenseTotal">0</span>
+
+            </h3>
+
+        </div> -->
+
+
+        <button
+            type="button"
+            id="saveExpense"
+            class="save-btn"
+            data-i18n="saveExpense"
+        >
+            Save Expense
+        </button>
+
+
+    </div>
+
+
+    <div class="table-box">
+
+
+        <h2
+            id="expenseListTitle"
+            data-i18n="expenseListTitle"
+        >
+            Expense List
+        </h2>
+
+
+        <div class="expense-date-filter">
+
+
+            <label
+                for="expenseFilterDate"
+                data-i18n="expenseFilterDate"
+            >
+                Date
+            </label>
+
+
+            <input
+                type="date"
+                id="expenseFilterDate"
+            >
+
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+
+            <table class="expense-table">
+
+
+                <thead>
+
+
+                    <tr>
+
+
+                        <th
+                            id="expenseIdTh"
+                            data-i18n="expenseIdTh"
+                        >
+                            Expense ID
+                        </th>
+
+
+                        <th
+                            id="expenseDateTh"
+                            data-i18n="expenseDateTh"
+                        >
+                            Expense Date
+                        </th>
+
+
+                        <th
+                            id="expenseTotalTh"
+                            data-i18n="expenseTotalTh"
+                        >
+                            Total Amount
+                        </th>
+
+
+                        <th
+                            id="createdByTh"
+                            data-i18n="createdByTh"
+                        >
+                            Created By
+                        </th>
+
+
+                        <th
+                            id="expenseActionsTh"
+                            data-i18n="expenseActionsTh"
+                        >
+                            Actions
+                        </th>
+
+
+                    </tr>
+
+
+                </thead>
+
+
+                <tbody id="expenseTableBody">
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+<!-- =========================================================
+     INCOME SECTION
+========================================================= -->
+
+<section
+    id="incomeSection"
+    class="page-section"
+>
+
+    <!-- ================= PAGE HEADER ================= -->
+
+    <div class="page-header">
+
+        <h1
+            id="incomeTitle"
+            data-i18n="incomeManagement"
+        >
+            Income Management
+        </h1>
+
+        <!-- <p
+            class="section-subtitle"
+            id="incomeSubtitle"
+            data-i18n="incomeSubtitle"
+        >
+            Add and manage your income
+        </p> -->
+
+    </div>
+
+
+    <!-- =================================================
+         ADD INCOME FORM
+    ================================================== -->
+
+    <div class="form-box">
+
+        <div class="form-header">
+
+            <h2
+                id="addIncomeTitle"
+                data-i18n="addIncome"
+            >
+                Add Income
+            </h2>
+
+            <!-- <p
+                data-i18n="createIncome"
+            >
+                Add your income sources
+            </p> -->
+
+        </div>
+
+
+        <!-- ================= FORM ================= -->
+
+        <form id="incomeForm">
+
+
+            <!-- Income Date -->
+
+            <div class="form-group">
+
+                <label
+                    for="incomeDate"
+                    data-i18n="incomeDate"
+                >
+                    Income Date
+                </label>
+
+                <input
+                    type="date"
+                    id="incomeDate"
+                    name="income_date"
+                    required
+                >
+
+            </div>
+
+
+            <!-- =================================================
+                 INCOME ITEMS
+            ================================================== -->
+
+            <div id="incomeItems">
+
+
+                <!-- First Income Row -->
+
+                <div class="income-row">
+
+
+                    <!-- Source -->
+
+                    <div class="form-group">
+
+                        <label
+                            data-i18n="source"
+                        >
+                            Source
+                        </label>
+
+                        <input
+                            type="text"
+                            class="incomeSource"
+                            placeholder="Enter source"
+                            data-i18n-placeholder="sourcePlaceholder"
+                            autocomplete="off"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Amount -->
+
+                    <div class="form-group">
+
+                        <label
+                            data-i18n="amount"
+                        >
+                            Amount (₹)
+                        </label>
+
+                        <input
+                            type="number"
+                            class="incomeAmount"
+                            placeholder="Enter amount"
+                            data-i18n-placeholder="amountPlaceholder"
+                            min="0"
+                            step="0.01"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= ADD MORE ================= -->
+
+            <button
+                type="button"
+                id="addIncomeRow"
+                class="add-more-btn"
+            >
+
+                + 
+                <span data-i18n="addMore">
+                    Add More
+                </span>
+
+            </button>
+
+
+            <!-- ================= SAVE ================= -->
+
+            <button
+                type="submit"
+                id="saveIncome"
+                class="save-btn"
+            >
+
+                <i class="fa-solid fa-plus"></i>
+
+                <span data-i18n="saveIncome">
+                    Save Income
+                </span>
+
+            </button>
+
+
+        </form>
+
+    </div>
+
+
+    <!-- =================================================
+         INCOME LIST
+    ================================================== -->
+
+    <div class="table-box">
+
+
+        <!-- List Header -->
+
+        <div class="list-header">
+
+            <h2
+                id="incomeListTitle"
+                data-i18n="incomeList"
+            >
+                Income List
+            </h2>
+
+            <!-- <p
+                data-i18n="incomeListSubtitle"
+            >
+                View and manage your saved income
+            </p> -->
+
+        </div>
+
+
+        <!-- ================= DATE FILTER ================= -->
+
+        <div class="income-date-filter">
+
+            <label
+                for="incomeFilterDate"
+                data-i18n="date"
+            >
+                Date
+            </label>
+
+            <input
+                type="date"
+                id="incomeFilterDate"
+            >
+
+        </div>
+
+
+        <!-- ================= TABLE ================= -->
+
+        <div class="table-wrapper">
+
+
+            <table class="income-table">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th
+                            id="incomeIdTh"
+                            data-i18n="incomeId"
+                        >
+                            Income ID
+                        </th>
+
+
+                        <th
+                            id="incomeDateTh"
+                            data-i18n="incomeDate"
+                        >
+                            Income Date
+                        </th>
+
+
+                        <th
+                            id="incomeSourceTh"
+                            data-i18n="source"
+                        >
+                            Source
+                        </th>
+
+
+                        <th
+                            id="incomeAmountTh"
+                            data-i18n="amount"
+                        >
+                            Amount
+                        </th>
+
+
+                        <th
+                            id="incomeCreatedByTh"
+                            data-i18n="createdBy"
+                        >
+                            Created By
+                        </th>
+
+
+                        <th
+                            id="incomeActionsTh"
+                            data-i18n="action"
+                        >
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody
+                    id="incomeTableBody"
+                >
+
+                    <!-- Income API data will appear here -->
+
+                </tbody>
+
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+</div>
+
+        </main>
+
+
+    </div>
+
+
+
+    <!-- ==================================================
+         MOBILE BOTTOM NAVIGATION
+    =================================================== -->
+
+   <nav class="bottom-navigation">
+
+
+    <!-- Dashboard -->
+
+    <a
+        href="#"
+        class="bottom-nav-item active"
+        data-section="dashboardSection"
+    >
+
+        <i class="fa-solid fa-house"></i>
+
+        <span data-i18n="dashboard">
+            Dashboard
+        </span>
+
+    </a>
+
+
+    <!-- Category -->
+
+    <a
+        href="#"
+        class="bottom-nav-item"
+        data-section="categorySection"
+    >
+
+        <i class="fa-solid fa-layer-group"></i>
+
+        <span data-i18n="category">
+            Category
+        </span>
+
+    </a>
+
+
+    <!-- Expense -->
+
+    <a
+        href="#"
+        class="bottom-nav-item"
+        data-section="expenseSection"
+    >
+
+        <i class="fa-solid fa-receipt"></i>
+
+        <span data-i18n="expense">
+            Expense
+        </span>
+
+    </a>
+
+
+    <!-- Income -->
+
+    <a
+        href="#"
+        class="bottom-nav-item"
+        data-section="incomeSection"
+    >
+
+        <i class="fa-solid fa-wallet"></i>
+
+        <span data-i18n="income">
+            Income
+        </span>
+
+    </a>
+
+
+</nav>
+
+    <!-- ==================================================
+         JAVASCRIPT
+    =================================================== -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
+```

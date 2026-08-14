@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Login - Expense Management System</title>
+
+    <link
+        rel="stylesheet"
+        href="login.css"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="login-container">
+
+        <div class="login-card">
+
+
+            <!-- LOGO / ICON -->
+
+            <div class="login-icon">
+
+                <i class="fa-solid fa-wallet"></i>
+
+            </div>
+
+
+            <!-- TITLE -->
+
+            <h1>
+                Expense Management
+            </h1>
+
+            <p class="login-subtitle">
+                Login to your account
+            </p>
+
+
+            <!-- LOGIN FORM -->
+
+           <form id="loginForm">
+
+    <!-- USER ID -->
+
+    <div class="form-group">
+
+        <label for="userId">
+            User ID
+        </label>
+
+        <div class="input-box">
+
+            <i class="fa-solid fa-user"></i>
+
+            <input
+                type="text"
+                id="userId"
+                placeholder="Enter User ID"
+                autocomplete="off"
+                required
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- PASSWORD -->
+
+    <div class="form-group">
+
+        <label for="password">
+            Password
+        </label>
+
+        <div class="input-box">
+
+            <i class="fa-solid fa-lock"></i>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter Password"
+                autocomplete="new-password"
+                required
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- LOGIN BUTTON -->
+
+    <button
+        type="submit"
+        id="loginBtn"
+    >
+
+        <i class="fa-solid fa-right-to-bracket"></i>
+
+        Login
+
+    </button>
+
+
+    <!-- REGISTER -->
+
+    <p class="register-text">
+
+        Don't have an account?
+
+        <a
+            href="resister.html"
+            id="registerLink"
+        >
+            Register
+        </a>
+
+    </p>
+
+</form>
+
+
+            <!-- REGISTER -->
+
+          <!-- <p class="register-text">
+
+    Don't have an account?
+
+    <a
+        href="resister.html"
+        id="registerLink"
+    >
+        Register
+    </a>
+
+</p> -->
+
+
+        </div>
+
+    </div>
+
+
+    <!-- FONT AWESOME -->
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js">
+    </script>
+
+
+    <!-- LOGIN JS -->
+
+    <script src="login.js"></script>
+
+
+</body>
+
+</html>
